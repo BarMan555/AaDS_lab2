@@ -17,10 +17,18 @@ if(MSVC)
     endif()
 endif()
 
-# ќбъ€вл€ем библиотеку
+# ќбъ€вл€ем библиотеки
 add_library(list_lib SHARED "include/list.cpp")
 target_include_directories(list_lib PUBLIC "include")
+
+add_library(polynomial_lib SHARED "include/polynomial.cpp")
+target_include_directories(polynomial_lib PUBLIC "include")
+
+add_library(summand_lib SHARED "include/summand.cpp")
+target_include_directories(summand_lib PUBLIC "include")
 
 # ќбъ€вл€ем консольное приложение
 add_executable(app "app/main.cpp")
 target_link_libraries(app list_lib)
+target_link_libraries(app polynomial_lib)
+target_link_libraries(app summand_lib)

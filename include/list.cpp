@@ -1,5 +1,8 @@
+#pragma once
+#include <cmath>
 #include<iostream>
 #include<stdexcept>
+#include "summand.cpp"
 
 
 template<class Data>
@@ -38,6 +41,19 @@ public:
 			tmp = tmp->next;
 		}
 		return stream;
+	}
+
+	template<class U>
+	friend U calculate_list(const LinkedList<summand<U>> list,const double number) {
+		Node* tmp = list._head->next;
+		U result = 0;
+
+		while (tmp != list._head) {
+			result += tmp->data.coeff * pow(number, tmp->data.degree);
+			tmp = tmp->next;
+		}
+
+		return result;
 	}
 };
 
