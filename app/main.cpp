@@ -1,17 +1,32 @@
 #include "list.cpp"
+#include "polynomial.cpp"
+#include "summand.cpp"
 #include <iostream>
+
+template<class U>
+void transformation(LinkedList<summand<U>>& list, const Polynomial<U>& pol) {
+	summand<U> tmp;
+	for (int i = 0; i <= pol.get_degree(); i++) {
+		tmp.coeff = pol[i];
+		if (tmp.coeff == 0) continue;
+		tmp.degree = i;
+
+		list.push_head(tmp);
+	}
+}
+
 int main(){
-	LinkedList<int> list;
-	list.push_head(55);
-	list.push_head(3);
-	list.push_head(2);
-	list.push_head(12);
+	
+	Polynomial<double> pol(2);
+	pol.set(10, 0);
+	pol.set(0, 1);
+	pol.set(6, 2);
+	std::cout << pol << std::endl;
 
-	LinkedList<int> list2(list);
+	LinkedList<summand<double>> pol_list;
+	transformation(pol_list, pol);
+	std::cout << pol_list << std::endl;
+	std::cout << calculate_list(pol_list, 2);
 
-	list += list2;
-	std::cout << list << std::endl;
-	LinkedList<int> list3(list + list2);
-	std::cout << list3;
 	return 0;
 }
