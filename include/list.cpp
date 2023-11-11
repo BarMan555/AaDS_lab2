@@ -44,7 +44,7 @@ public:
 	}
 
 	template<class U>
-	friend U calculate_list(const LinkedList<summand<U>> list,const double number) {
+	static U calculate_list(const LinkedList<summand<U>> list,const double number) {
 		Node* tmp = list._head->next;
 		U result = 0;
 

@@ -1,7 +1,8 @@
 #pragma once
 #include <iostream>
 
-template<class T>
+// Слагаемое в многочлене
+template<class T> 
 struct summand {
 	T coeff;
 	int degree;
